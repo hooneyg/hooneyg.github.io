@@ -20,7 +20,76 @@ export interface Project {
   }[];
 }
 
-export const PROJECTS: Project[] = [
+export const projects: Project[] = [
+  {
+    id: 'ngff-qms',
+    title: 'NGFF QMS / IMS',
+    subtitle: 'LX 판토스 차세대 글로벌 물류 품질 관리 시스템',
+    category: 'Logistics · Architecture · Cloud',
+    period: '2023.06 - 2024.05',
+    client: 'LX 판토스 (LX Pantos)',
+    role: 'Backend Lead · System Architect',
+    description: '글로벌 물류 품질 관리를 위한 차세대 시스템(NGFF QMS)의 설계 및 구축을 리딩했습니다. Kafka 중심의 비동기 이벤트 아키텍처와 GCP 클라우드 인프라를 결합하여 시스템 간 결합도를 낮추고 데이터 정합성을 극대화한 프로젝트입니다.',
+    tags: ['Java 11', 'Spring Boot', 'Kafka', 'GCP', 'MySQL', 'Redis', 'Docker', 'Nginx'],
+    achievements: [
+      'Kafka 기반 비동기 이벤트 드리븐 아키텍처(EDA) 설계 및 구축 → 시스템 결합도 획기적 개선',
+      'SAP ERP 연동 대용량 데이터 파이프라인 구축 및 멱등성(Idempotency) 보장 로직 설계',
+      'GCP 기반 고가용성(HA) 인프라 아키텍처 설계 (Cloud SQL 이중화, Nginx Proxy)',
+      'Docker 컨테이너 기반 개발-운영 환경 표준화 및 Jenkins CI/CD 자동화 구축',
+      'RAG 기반 LLM 챗봇 서비스를 실무 시스템에 성공적으로 통합하여 데이터 활용성 증대',
+      'Redis 세션 스토어 도입을 통한 SSO 통합 인증 및 DB 조회 부하 최적화',
+    ],
+    architecture: ['Nginx Reverse Proxy', 'GCP (Cloud SQL, Redis)', 'Kafka / Zookeeper', 'Spring Boot (Docker)', 'WebSquare UI', 'SAP ERP Integration'],
+    architectureDiagram: \
+graph TD
+    subgraph "External Systems"
+        SAP[SAP ERP System]
+    end
+    subgraph "GCP Infrastructure"
+        Nginx[Nginx Reverse Proxy]
+        subgraph "Application Layer"
+            API[API Server - Spring Boot]
+            UI[UI Server - WebSquare]
+        end
+        subgraph "Messaging & Cache"
+            Kafka[Apache Kafka]
+            Redis[Redis Session/Cache]
+        end
+        subgraph "Data Layer"
+            MySQL[(Cloud SQL - MySQL)]
+            BQ[(BigQuery / Cloud Storage)]
+        end
+    end
+
+    SAP -- "Events" --> Kafka
+    Kafka -- "Subscribe" --> API
+    Nginx -- "/api" --> API
+    Nginx -- "/ui" --> UI
+    API <--> Redis
+    API <--> MySQL
+    MySQL -- "Sync" --> BQ
+    \,
+    techStack: {
+      'Backend': ['Java 11', 'Spring Boot 2.5.x', 'JPA'],
+      'Infrastructure': ['GCP', 'Docker', 'Nginx', 'Jenkins'],
+      'Messaging': ['Apache Kafka', 'Zookeeper'],
+      'Database': ['MySQL (Cloud SQL)', 'Redis', 'BigQuery'],
+    },
+    problemSolving: [
+      {
+        title: '비동기 데이터 연동 시 정합성 및 유실 문제 해결',
+        issue: 'SAP 등 외부 시스템과의 대량 데이터 연동 시 타겟 시스템 장애로 인한 메시지 유실 및 처리 지연 발생',
+        solution: 'Kafka 메시지 큐와 재처리 메커니즘(Retry Logic)을 도입하고, 소비자(Consumer) 측에 멱등성 처리 로직을 적용하여 중복 방지 및 유실 제로 달성',
+        impact: '시스템 안정성 강화 및 데이터 정합성 100% 확보'
+      },
+      {
+        title: '환경 불일치로 인한 배포 오류 원천 차단',
+        issue: '로컬 개발 환경과 실제 운영 환경(GCP) 간의 설정 차이로 인한 런타임 오류 빈번 발생',
+        solution: '전 모듈 Docker 컨테이너화 및 환경 변수(ConfigMap/Secret) 기반 관리 체계 구축',
+        impact: '배포 성공률 100% 달성 및 환경 구축 시간 70% 단축'
+      }
+    ]
+  },
   {
     id: 'ngff-qms',
     title: 'NGFF-QMS / IMS',
