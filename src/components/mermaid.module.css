@@ -1,0 +1,350 @@
+/* ====================================================================
+   Mermaid Premium Diagram Renderer — Design System
+   ====================================================================
+   다이어그램 전용 CSS Module.
+   globals.css 전역 스타일을 대체하여 캡슐화된 스타일링을 제공합니다.
+   ==================================================================== */
+
+/* --- 외부 컨테이너 --- */
+.wrapper {
+  position: relative;
+  background-color: #111115;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* Subtle dot grid 배경 패턴 */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- 상단 미니 툴바 --- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  position: relative;
+  z-index: 1;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.statusDotSuccess {
+  background-color: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+.statusDotLoading {
+  background-color: #f59e0b;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.statusDotError {
+  background-color: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+}
+
+.toolbarLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.toolbarBadge {
+  font-size: 9px;
+  font-weight: 800;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.25rem;
+}
+
+/* --- SVG 컨테이너 --- */
+.svgContainer {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  height: 540px; /* 고정 뷰포트 높이 확보 */
+  max-height: 60vh; /* 브라우저 크기에 비례하는 반응형 한계 적용 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden !important; /* 드래그 이동 시 삐져나간 영역을 뷰포트 외부에서 숨김 */
+  background-color: rgba(0, 0, 0, 0.15); /* 시인성 확보용 어두운 투명 배경 */
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* SVG 자체 스타일 */
+.svgContainer svg {
+  display: block;
+  margin: 0 auto;
+}
+
+.sequenceSvg {
+  justify-content: center !important; /* 줌/팬 정렬 일치를 위해 중앙 정렬 */
+}
+
+/* --- 로딩 상태 (스켈레톤) --- */
+.loading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 1.5rem;
+  min-height: 180px;
+}
+
+.loadingIcon {
+  color: #3f3f46;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.loadingText {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4b5563;
+  letter-spacing: 0.05em;
+}
+
+.loadingBar {
+  width: 120px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loadingBar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* --- 에러 상태 --- */
+.error {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem 1.5rem;
+  min-height: 120px;
+}
+
+.errorIcon {
+  color: #ef4444;
+  opacity: 0.6;
+}
+
+.errorTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ef4444;
+  opacity: 0.8;
+}
+
+.errorMessage {
+  font-size: 0.7rem;
+  color: #6b7280;
+  text-align: center;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+/* --- Mermaid SVG 내부 노드 스타일 오버라이드 --- */
+
+/* 노드 레이블 (htmlLabels: true 기준) */
+.svgContainer :global(.nodeLabel) {
+  font-family: 'Inter', 'Pretendard', system-ui, -apple-system, sans-serif !important;
+  font-size: 13px !important;
+  padding: 2px 4px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  color: #f3f4f6 !important;
+  text-align: center !important;
+}
+
+/* 엣지 레이블 */
+.svgContainer :global(.edgeLabel) {
+  font-family: 'Inter', 'Pretendard', system-ui, -apple-system, sans-serif !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
+}
+
+/* foreignObject 내부 div 중앙 정렬 보장 및 overflow 방지 */
+.svgContainer :global(foreignObject) > div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.svgContainer :global(foreignObject) {
+  overflow: hidden !important;
+}
+
+/* SVG text 폰트 폴백 */
+.svgContainer :global(text) {
+  font-family: 'Inter', 'Pretendard', system-ui, -apple-system, sans-serif !important;
+}
+
+/* 노드 박스 스타일 강화 */
+.svgContainer :global(.node rect),
+.svgContainer :global(.node polygon),
+.svgContainer :global(.node circle) {
+  stroke-width: 1.5px !important;
+}
+
+/* subgraph 제목 스타일 */
+.svgContainer :global(.cluster-label text),
+.svgContainer :global(.cluster-label .nodeLabel) {
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.02em;
+}
+
+/* subgraph 외곽선 */
+.svgContainer :global(.cluster rect) {
+  rx: 6 !important;
+  ry: 6 !important;
+  stroke-width: 1px !important;
+  stroke-dasharray: none !important;
+}
+
+/* --- 애니메이션 --- */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes shimmer {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+/* 줌 컨트롤러 스타일 */
+.zoomControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.zoomHint {
+  font-size: 9px;
+  color: #6b7280;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .zoomHint {
+    display: inline;
+  }
+}
+
+.zoomDivider {
+  width: 1px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .zoomDivider {
+    display: block;
+  }
+}
+
+.zoomBtn {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.zoomBtn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #10b981;
+}
+
+.zoomPercent {
+  font-size: 10px;
+  font-weight: 800;
+  color: #d1d5db;
+  min-width: 32px;
+  text-align: center;
+  font-family: monospace;
+}
+
+.zoomResetBtn {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  font-size: 9px;
+  font-weight: 900;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.zoomResetBtn:hover {
+  background-color: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+

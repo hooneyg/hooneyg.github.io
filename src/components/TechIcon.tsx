@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './tech-icon.module.css';
 
 interface TechIconProps {
   name: string;
@@ -48,7 +49,7 @@ const ICON_MAP: Record<string, { slug?: string; version?: string; customUrl?: st
   
   // Custom Logos provided by User
   'websocket': { customUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/WebSocket_colored_logo.svg/960px-WebSocket_colored_logo.svg.png' },
-  'webrtc': { customUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMoMcwSY3wd8Gbsoa6aKjC4xZFG3elvcRHkA&s' },
+  'webrtc': { customUrl: '/webrtc.png' },
   'nginx': { customUrl: 'https://cdn.iconscout.com/icon/free/png-256/free-nginx-logo-icon-svg-download-png-3030173.png?f=webp' },
   'jennifer': { customUrl: 'https://avatars.githubusercontent.com/u/15087976?s=200&v=4' },
 
@@ -59,29 +60,33 @@ const ICON_MAP: Record<string, { slug?: string; version?: string; customUrl?: st
   'nexacro': { customUrl: 'https://avatars.githubusercontent.com/u/32917911?v=4' },
   'jsp': { customUrl: 'https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-jsp-file-document-icon-png-image_927521.jpg' },
   'fusioncharts': { customUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEiU2T4Fx5tts8gWTlcWM-RwBX-j-CpsAFfQ&s' },
+  'ansible': { customUrl: '/ansible.png' },
+  'ansiable': { customUrl: '/ansible.png' },
+  'ubuntu': { customUrl: '/ubuntu.png' },
 };
 
 const TechIcon: React.FC<TechIconProps> = ({ name, size = 28, label, showLabel = true, variant = 'default' }) => {
   const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');
   const iconConfig = ICON_MAP[key];
+  const isImageInvert = ['github', 'kafka', 'apachekafka'].includes(key);
   
   if (iconConfig === undefined || iconConfig === null) {
     if (variant === 'simple') {
       return (
-        <span className="text-[9px] font-black text-gray-400 tracking-tight text-center leading-none">
+        <span style={{ fontSize: '9px', fontWeight: 900, color: '#9ca3af', letterSpacing: '-0.05em', textAlign: 'center', lineHeight: 1 }}>
           {name.length <= 4 ? name.toUpperCase() : name.substring(0, 3).toUpperCase()}
         </span>
       );
     }
     return (
-      <div className="flex flex-col items-center justify-center group gap-2 transition-all duration-300">
-        <div className="relative flex items-center justify-center w-14 h-14 bg-white/5 rounded-2xl border border-white/10 group-hover:border-emerald-500/50 transition-all duration-300 group-hover:scale-110 group-hover:bg-emerald-500/5">
-          <span className="text-[11px] font-black text-gray-400 group-hover:text-emerald-400 tracking-tight">
+      <div className={styles.container}>
+        <div className={styles.iconWrapper}>
+          <span className={styles.fallbackText}>
             {name.length <= 4 ? name.toUpperCase() : name.substring(0, 3).toUpperCase()}
           </span>
         </div>
         {showLabel && (
-          <span className="text-[10px] font-bold text-gray-500 group-hover:text-emerald-400 transition-colors uppercase tracking-widest text-center">
+          <span className={styles.label}>
             {label || name}
           </span>
         )}
@@ -98,7 +103,7 @@ const TechIcon: React.FC<TechIconProps> = ({ name, size = 28, label, showLabel =
         alt={name}
         width={size}
         height={size}
-        className={`object-contain ${['github', 'kafka', 'apachekafka'].includes(key) ? 'invert brightness-200' : ''}`}
+        className={`${styles.img} ${isImageInvert ? styles.invert : ''}`}
         onError={(e) => {
           (e.target as HTMLImageElement).style.display = 'none';
         }}
@@ -107,23 +112,21 @@ const TechIcon: React.FC<TechIconProps> = ({ name, size = 28, label, showLabel =
   }
 
   return (
-    <div className="flex flex-col items-center justify-center group gap-2 transition-all duration-300">
-      <div 
-        className="relative flex items-center justify-center w-14 h-14 bg-white/5 rounded-2xl border border-white/10 group-hover:border-emerald-500/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] group-hover:bg-emerald-500/5"
-      >
+    <div className={styles.container}>
+      <div className={styles.iconWrapper}>
         <img 
           src={iconUrl} 
           alt={name}
           width={size}
           height={size}
-          className={`object-contain ${['github', 'kafka', 'apachekafka'].includes(key) ? 'invert brightness-200' : ''}`}
+          className={`${styles.img} ${isImageInvert ? styles.invert : ''}`}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';
           }}
         />
       </div>
       {showLabel && (
-        <span className="text-[10px] font-bold text-gray-500 group-hover:text-emerald-400 transition-colors uppercase tracking-widest text-center">
+        <span className={styles.label}>
           {label || name}
         </span>
       )}

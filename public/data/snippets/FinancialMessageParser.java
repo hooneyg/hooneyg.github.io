@@ -1,3 +1,4 @@
+
 /**
  * Financial Fixed-Length Message Parser (TCP/IP)
  * ==============================================
@@ -11,7 +12,7 @@
  * 4. 전문 헤더/바디 분리 처리
  * 5. Checksum 검증을 통한 데이터 무결성 보장
  *
- * @author Kwak Gyeong-hoon (Hooney)
+ * @author Hooney
  */
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -124,8 +125,7 @@ public class FinancialMessageParser {
 
         if (computed != received) {
             throw new ParseException(
-                String.format("Checksum mismatch: computed=%d, received=%d", computed, received)
-            );
+                    String.format("Checksum mismatch: computed=%d, received=%d", computed, received));
         }
     }
 
@@ -155,7 +155,9 @@ public class FinancialMessageParser {
         }
     }
 
-    public enum FieldType { STRING, NUMERIC, KOREAN }
+    public enum FieldType {
+        STRING, NUMERIC, KOREAN
+    }
 
     public static class FieldDef {
         private final String name;
@@ -164,15 +166,31 @@ public class FinancialMessageParser {
         private final int decimalPlaces;
 
         public FieldDef(String name, int length, FieldType type, int decimalPlaces) {
-            this.name = name; this.length = length;
-            this.type = type; this.decimalPlaces = decimalPlaces;
+            this.name = name;
+            this.length = length;
+            this.type = type;
+            this.decimalPlaces = decimalPlaces;
         }
 
-        public String getName() { return name; }
-        public int getLength() { return length; }
-        public FieldType getType() { return type; }
-        public int getDecimalPlaces() { return decimalPlaces; }
-        public boolean isKorean() { return type == FieldType.KOREAN; }
+        public String getName() {
+            return name;
+        }
+
+        public int getLength() {
+            return length;
+        }
+
+        public FieldType getType() {
+            return type;
+        }
+
+        public int getDecimalPlaces() {
+            return decimalPlaces;
+        }
+
+        public boolean isKorean() {
+            return type == FieldType.KOREAN;
+        }
     }
 
     public static class MessageSchema {
@@ -184,11 +202,18 @@ public class FinancialMessageParser {
             this.checksumEnabled = checksumEnabled;
         }
 
-        public List<FieldDef> getFields() { return fields; }
-        public boolean isChecksumEnabled() { return checksumEnabled; }
+        public List<FieldDef> getFields() {
+            return fields;
+        }
+
+        public boolean isChecksumEnabled() {
+            return checksumEnabled;
+        }
     }
 
     public static class ParseException extends Exception {
-        public ParseException(String msg) { super(msg); }
+        public ParseException(String msg) {
+            super(msg);
+        }
     }
 }

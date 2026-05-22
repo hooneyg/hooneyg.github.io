@@ -1,0 +1,174 @@
+:root {
+  --bg-primary: #0a0a0c;
+  --bg-secondary: #16161a;
+  --accent-color: #10b981; /* Emerald 500 */
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --accent-color-rgb: 16, 185, 129;
+  --emerald-400: #34d399;
+  --blue-500: #3b82f6;
+  --purple-500: #8b5cf6;
+  --amber-400: #fbbf24;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Pretendard', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Common Classes for CSS Modules reuse */
+.glassCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+}
+
+.textGradient {
+  background: linear-gradient(135deg, var(--emerald-400), var(--blue-500), var(--purple-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Markdown styling inside detail page */
+.markdownContent {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.markdownContent h1, 
+.markdownContent h2, 
+.markdownContent h3,
+.markdownContent h4 {
+  color: #ffffff;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.markdownContent h1 {
+  font-size: 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.markdownContent h2 {
+  font-size: 1.4rem;
+  border-left: 4px solid var(--accent-color);
+  padding-left: 0.75rem;
+}
+
+.markdownContent h3 {
+  font-size: 1.2rem;
+}
+
+.markdownContent p {
+  margin-bottom: 1.25rem;
+  color: #d1d5db;
+}
+
+.markdownContent code {
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'Fira Code', Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  color: var(--emerald-400);
+}
+
+.markdownContent pre {
+  background-color: #121214;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.markdownContent pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #e5e7eb;
+}
+
+.markdownContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.markdownContent th, 
+.markdownContent td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.markdownContent th {
+  background-color: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.markdownContent td {
+  color: #d1d5db;
+}
+
+.markdownContent ul,
+.markdownContent ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: #d1d5db;
+}
+
+.markdownContent li {
+  margin-bottom: 0.5rem;
+}
+
+.markdownContent blockquote {
+  border-left: 4px solid #3b82f6;
+  background-color: rgba(59, 130, 246, 0.05);
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.25rem;
+}
+
+.markdownContent blockquote p {
+  margin-bottom: 0;
+  color: #9ca3af;
+  font-style: italic;
+}
+

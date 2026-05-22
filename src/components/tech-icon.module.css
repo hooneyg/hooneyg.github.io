@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.container:hover .iconWrapper {
+  border-color: rgba(16, 185, 129, 0.5);
+  transform: scale(1.1);
+  background-color: rgba(16, 185, 129, 0.05);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.fallbackText {
+  font-size: 11px;
+  font-weight: 900;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  transition: color 0.3s ease;
+}
+
+.container:hover .fallbackText {
+  color: var(--emerald-400);
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.container:hover .label {
+  color: var(--emerald-400);
+}
+
+.img {
+  object-fit: contain;
+}
+
+.invert {
+  filter: invert(1) brightness(2);
+}

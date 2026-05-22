@@ -23,14 +23,14 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'ngff-qms',
-    title: 'NGFF QMS / IMS',
-    subtitle: 'LX 판토스 차세대 글로벌 물류 품질 관리 시스템',
+    title: 'LX Pantos NGFF-QMS / QMS',
+    subtitle: 'LX 판토스 차세대 프레이트 포워딩 품질 관리 시스템',
     category: 'Logistics · Architecture · Cloud',
-    period: '2023.06 - 2024.05',
+    period: '2022.08 - 2025.12',
     client: 'LX 판토스 (LX Pantos)',
     role: 'Backend Lead · System Architect',
-    description: '글로벌 물류 품질 관리를 위한 차세대 시스템(NGFF QMS)의 설계 및 구축을 리딩했습니다. Kafka 중심의 비동기 이벤트 아키텍처와 GCP 클라우드 인프라를 결합하여 시스템 간 결합도를 낮추고 데이터 정합성을 극대화한 프로젝트입니다.',
-    tags: ['Java 11', 'Spring Boot', 'Kafka', 'GCP', 'MySQL', 'Redis', 'Docker', 'Nginx'],
+    description: '글로벌 물류 품질 관리를 위한 차세대 프레이트 포워딩 품질관리 시스템(NGFF QMS)의 설계 및 구축을 리딩했습니다. Kafka 중심의 비동기 이벤트 아키텍처와 GCP 클라우드 인프라를 결합하여 시스템 간 결합도를 낮추고 데이터 정합성을 극대화한 프로젝트입니다.',
+    tags: ['Java', 'Spring Boot', 'Kafka', 'GCP', 'MySQL', 'Redis', 'Docker', 'Nginx'],
     achievements: [
       'Kafka 기반 비동기 이벤트 드리븐 아키텍처(EDA) 설계 및 구축 → 시스템 결합도 획기적 개선',
       'SAP ERP 연동 대용량 데이터 파이프라인 구축 및 멱등성(Idempotency) 보장 로직 설계',
@@ -40,7 +40,7 @@ export const projects: Project[] = [
       'Redis 세션 스토어 도입을 통한 SSO 통합 인증 및 DB 조회 부하 최적화',
     ],
     architecture: ['Nginx Reverse Proxy', 'GCP (Cloud SQL, Redis)', 'Kafka / Zookeeper', 'Spring Boot (Docker)', 'WebSquare UI', 'SAP ERP Integration'],
-    architectureDiagram: \
+    architectureDiagram: `
 graph TD
     subgraph "External Systems"
         SAP[SAP ERP System]
@@ -68,9 +68,9 @@ graph TD
     API <--> Redis
     API <--> MySQL
     MySQL -- "Sync" --> BQ
-    \,
+    `,
     techStack: {
-      'Backend': ['Java 11', 'Spring Boot 2.5.x', 'JPA'],
+      'Backend': ['Java', 'Spring Boot 2.5.x', 'JPA'],
       'Infrastructure': ['GCP', 'Docker', 'Nginx', 'Jenkins'],
       'Messaging': ['Apache Kafka', 'Zookeeper'],
       'Database': ['MySQL (Cloud SQL)', 'Redis', 'BigQuery'],
@@ -91,11 +91,11 @@ graph TD
     ]
   },
   {
-    id: 'ngff-qms',
-    title: 'NGFF-QMS / IMS',
-    subtitle: '차세대 물류 품질/보험 통합 관리 시스템',
+    id: 'ngff-qms-ims',
+    title: 'LX Pantos NGFF-IMS / IMS',
+    subtitle: '차세대 프레이트 포워딩 보험 클레임 관리 시스템',
     category: 'Logistics · ERP',
-    period: '2022.05 - 현재',
+    period: '2022.09 - 2025.12',
     client: 'LX Pantos',
     role: 'Backend Lead · DB Architect',
     description: 'LX Pantos의 차세대 프레이트 포워딩 프로젝트(NGFF) 내 품질관리 시스템(QMS)과 보험클레임 관리 시스템(IMS)을 설계·개발·운영한 프로젝트입니다. 대용량 물류 전표 데이터를 실시간 처리하고, SAP ERP 연동 및 KPI 대시보드 시각화를 통해 현업의 데이터 기반 의사결정을 지원했습니다.',
@@ -162,7 +162,7 @@ graph TD
     title: 'FSS 영상회의 시스템',
     subtitle: '금융감독원 사내 실시간 화상회의 솔루션',
     category: 'Real-time · Security',
-    period: '2021.10 - 2022.04',
+    period: '2021.10 - 2022.07',
     client: '금융감독원 (FSS)',
     role: 'Full-Stack Developer · Reverse Engineer',
     description: '금융감독원 사내 화상회의 솔루션(세하컴즈 BODA)을 소스코드 없이 역공학으로 분석하여 커스터마이징하고, WebRTC 기반 실시간 영상/음성 스트리밍 시스템을 구축·안정화한 프로젝트입니다.',
@@ -219,7 +219,7 @@ graph LR
     title: 'FSS 메신저 고도화',
     subtitle: '금융감독원 차세대 통합 메신저 구축',
     category: 'Communication · Infrastructure',
-    period: '2021.03 - 2021.09',
+    period: '2021.08 - 2022.07',
     client: '금융감독원 (FSS)',
     role: 'Backend Developer · DB Migration Architect',
     description: '네이트온(NateOn) 기반 노후 메신저를 신규 엔진(이지닉스 FFS)으로 전면 교체하고, 이기종 DB 간 무손실 암호화 마이그레이션, SSO/MFA 통합 인증, 인프라 3중화를 수행한 프로젝트입니다.',
@@ -268,7 +268,7 @@ graph TD
         title: '대량의 평문 대화 로그 실시간 암호화 이관',
         issue: '수천만 건의 기존 평문 대화 데이터를 서비스 중단 없이 AES-256으로 암호화하여 이관해야 함',
         solution: '다중 스레드 기반의 배치 마이그레이션 툴 자체 개발 및 트랜잭션 분리 처리',
-        impact: '3,000만 건 데이터 6시간 내 100% 무손실 이관 성공'
+        impact: '300만 건 데이터 6시간 내 100% 무손실 이관 성공'
       }
     ]
   },
@@ -277,7 +277,7 @@ graph TD
     title: 'FSS 통합 안전관리 시스템',
     subtitle: '금융감독원 사내 안전 및 시설 관리 고도화',
     category: 'Enterprise · Security',
-    period: '2022.05 - 2023.05',
+    period: '2021.08 - 2022.07',
     client: '금융감독원 (FSS)',
     role: 'Backend Developer · UI/UX Optimizer',
     description: '금융감독원 내 시설 안전 관리 및 임직원 안전 수칙 준수 여부를 모니터링하고 관리하는 시스템의 운영 및 고도화를 담당했습니다. 레거시 UI 플랫폼을 개선하고 데이터 정합성을 확보하여 행정 업무 효율을 높였습니다.',
@@ -317,7 +317,7 @@ graph TD
     title: 'LX Pantos VOC',
     subtitle: '글로벌 고객의 소리(VOC) 수집 및 관리 시스템',
     category: 'Cloud · Customer Service',
-    period: '2020.10 - 2021.02',
+    period: '2022.09 - 2025.12',
     client: 'LX Pantos',
     role: 'Full-Stack Developer',
     description: 'LX Pantos 홈페이지 내 고객의 소리(VOC) 페이지를 개발하고 안정화 및 운영·유지보수를 수행한 프로젝트입니다. 외부망에서 수집되는 개인정보의 안전한 내부망 전송 보안 아키텍처를 설계했습니다.',

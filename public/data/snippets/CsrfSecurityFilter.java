@@ -1,3 +1,4 @@
+
 /**
  * Custom CSRF Protection Filter with Double Submit Cookie Pattern
  * ================================================================
@@ -8,7 +9,7 @@
  * - AJAX 요청 시 X-CSRF-TOKEN 헤더 자동 검증
  * - 토큰 회전(Rotation) 정책으로 세션 고정 공격 방어
  *
- * @author Kwak Gyeong-hoon (Hooney)
+ * @author Hooney
  * @project FSS Internal Security Enhancement
  */
 import javax.servlet.*;
@@ -56,8 +57,7 @@ public class CsrfSecurityFilter implements Filter {
             httpResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
             httpResponse.setContentType("application/json;charset=UTF-8");
             httpResponse.getWriter().write(
-                "{\"error\":\"CSRF_VALIDATION_FAILED\",\"message\":\"유효하지 않은 CSRF 토큰입니다.\"}"
-            );
+                    "{\"error\":\"CSRF_VALIDATION_FAILED\",\"message\":\"유효하지 않은 CSRF 토큰입니다.\"}");
             return;
         }
 
@@ -88,9 +88,8 @@ public class CsrfSecurityFilter implements Filter {
     private void setCsrfCookie(HttpServletResponse response, String token) {
         // SameSite 속성은 Set-Cookie 헤더에 직접 추가 (Servlet API 미지원)
         String cookieValue = String.format(
-            "%s=%s; Max-Age=%d; Path=/; SameSite=Strict; Secure; HttpOnly=false",
-            CSRF_COOKIE_NAME, token, TOKEN_TTL_SECONDS
-        );
+                "%s=%s; Max-Age=%d; Path=/; SameSite=Strict; Secure; HttpOnly=false",
+                CSRF_COOKIE_NAME, token, TOKEN_TTL_SECONDS);
         response.addHeader("Set-Cookie", cookieValue);
     }
 
@@ -102,7 +101,8 @@ public class CsrfSecurityFilter implements Filter {
 
     private String extractTokenFromCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
-        if (cookies == null) return null;
+        if (cookies == null)
+            return null;
         for (Cookie cookie : cookies) {
             if (CSRF_COOKIE_NAME.equals(cookie.getName())) {
                 return cookie.getValue();
@@ -113,9 +113,14 @@ public class CsrfSecurityFilter implements Filter {
 
     private boolean isSafeMethod(String method) {
         return "GET".equals(method) || "HEAD".equals(method)
-            || "OPTIONS".equals(method) || "TRACE".equals(method);
+                || "OPTIONS".equals(method) || "TRACE".equals(method);
     }
 
-    @Override public void init(FilterConfig config) {}
-    @Override public void destroy() {}
+    @Override
+    public void init(FilterConfig config) {
+    }
+
+    @Override
+    public void destroy() {
+    }
 }
