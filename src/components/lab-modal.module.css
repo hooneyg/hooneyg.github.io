@@ -17,7 +17,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
   width: 100%;
-  max-w: 72rem;
+  max-width: 72rem;
   box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
   position: relative;
   margin-top: auto;
@@ -57,9 +57,9 @@
 
 .closeButton {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
-  padding: 0.75rem;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
   border-radius: 9999px;
   background-color: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -72,6 +72,14 @@
   justify-content: center;
 }
 
+@media (min-width: 768px) {
+  .closeButton {
+    top: 2rem;
+    right: 2rem;
+    padding: 0.75rem;
+  }
+}
+
 .closeButton:hover {
   background-color: #ffffff;
   color: #000000;
@@ -79,13 +87,14 @@
 
 .headerTitleWrapper {
   position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  right: 2rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .headerTitleWrapper {
+    bottom: 2rem;
     left: 4rem;
     right: 4rem;
   }
@@ -110,41 +119,44 @@
 }
 
 .mainTitle {
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 @media (min-width: 768px) {
   .mainTitle {
     font-size: 3.75rem;
+    line-height: 1.1;
   }
 }
 
 .bodyContent {
-  padding: 2.5rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
 }
 
 @media (min-width: 768px) {
   .bodyContent {
     padding: 4rem;
+    gap: 5rem;
   }
 }
 
 .overviewGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
+  gap: 2.5rem;
 }
 
 @media (min-width: 1024px) {
   .overviewGrid {
     grid-template-columns: 2fr 1fr;
+    gap: 4rem;
   }
 }
 
@@ -152,6 +164,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
 }
 
 .sectionTitle {
@@ -208,6 +221,7 @@
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  min-width: 0;
 }
 
 .githubBlock {
@@ -266,7 +280,7 @@
 
 .techGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
   gap: 1rem;
 }
 
