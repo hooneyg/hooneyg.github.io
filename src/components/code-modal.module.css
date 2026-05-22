@@ -22,10 +22,12 @@
   box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
   height: 85vh;
   overflow: hidden;
+  position: relative;
 }
 
 .header {
   padding: 1.5rem;
+  padding-right: 4rem; /* 모바일에서 닫기 버튼(absoluteCloseButton) 영역 침범 방지 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
@@ -37,6 +39,7 @@
 @media (min-width: 768px) {
   .header {
     padding: 2rem;
+    padding-right: 5rem; /* 데스크톱에서도 닫기 버튼과의 충분한 간격 확보 */
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -295,4 +298,35 @@
 
 .emeraldIcon {
   color: #10b981;
+}
+
+.absoluteCloseButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .absoluteCloseButton {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+.absoluteCloseButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }

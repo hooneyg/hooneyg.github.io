@@ -21,7 +21,7 @@ const ICON_MAP: Record<string, { slug?: string; version?: string; customUrl?: st
   'redis': { slug: 'redis', version: 'original' },
   'postgresql': { slug: 'postgresql', version: 'original' },
   'mysql': { slug: 'mysql', version: 'original' },
-  'oracle': { customUrl: 'https://www.vhv.rs/dpng/d/453-4533338_oracle-logo-for-website-new-oracle-logo-png.png' },
+  'oracle': { customUrl: '/oracle.png' },
   'mariadb': { slug: 'mariadb', version: 'original' },
   'docker': { slug: 'docker', version: 'original' },
   'dockercompose': { slug: 'docker', version: 'original' },
@@ -48,6 +48,7 @@ const ICON_MAP: Record<string, { slug?: string; version?: string; customUrl?: st
   'css3': { slug: 'css3', version: 'original' },
   
   // Custom Logos provided by User
+  'jwt': { customUrl: '/jwt.png' },
   'websocket': { customUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/WebSocket_colored_logo.svg/960px-WebSocket_colored_logo.svg.png' },
   'webrtc': { customUrl: '/webrtc.png' },
   'nginx': { customUrl: 'https://cdn.iconscout.com/icon/free/png-256/free-nginx-logo-icon-svg-download-png-3030173.png?f=webp' },

@@ -57,7 +57,7 @@ sequenceDiagram
     id: 'csrf',
     title: 'CSRF Security Filter',
     lang: 'Java',
-    file: 'CSRF_Security_Filter.java',
+    file: 'CsrfSecurityFilter.java',
     desc: 'Stateless 인증(JWT) 환경에서 CSRF 공격을 효과적으로 차단하기 위한 Double Submit Cookie 패턴 구현체. SameSite=Strict 및 Secure 속성을 적용한 쿠키 정책과 암호화 토큰 비교, 그리고 토큰 고정 공격을 우회하기 위한 세션 회전(Token Rotation) 메커니즘 제공.',
     category: '보안',
     diagram: `
@@ -139,7 +139,7 @@ graph TD
     id: 'tcp',
     title: 'TCP Packet Parser',
     lang: 'Java',
-    file: 'TCP_Packet_Parser.java',
+    file: 'FinancialMessageParser.java',
     desc: '금융권의 대용량 호스트 인터페이스를 고속 처리하기 위한 오프힙(Off-Heap) 메모리 ByteBuffer 기반 파서. 고정 길이 전문 헤더의 길이 지시자를 파싱하여 가변 바디 데이터 바인딩을 최소화하고 GC 부하를 대폭 줄여 Microsecond 수준의 지연 시간을 만족하는 성능 지향적 파이프라인.',
     category: '통신',
     diagram: `

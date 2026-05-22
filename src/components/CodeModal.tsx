@@ -46,6 +46,10 @@ const CodeModal: React.FC<Props> = ({ snippet, onClose }) => {
         className={styles.modal}
         onClick={(e) => e.stopPropagation()}
       >
+        <button onClick={onClose} className={styles.absoluteCloseButton} aria-label="Close modal">
+          <X size={20} />
+        </button>
+
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerLeft}>
@@ -78,14 +82,10 @@ const CodeModal: React.FC<Props> = ({ snippet, onClose }) => {
                 <Code2 size={14} /> Source Code
               </button>
             </div>
-            <div className={styles.divider} />
             <div className={styles.actionWrapper}>
               <button onClick={handleCopy} className={styles.actionButton}>
                 {copied ? <Check size={20} className={styles.emeraldIcon} /> : <Copy size={20} />}
                 <span className={styles.tooltip}>Copy Code</span>
-              </button>
-              <button onClick={onClose} className={styles.closeButton}>
-                <X size={24} />
               </button>
             </div>
           </div>

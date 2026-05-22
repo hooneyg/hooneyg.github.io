@@ -166,9 +166,8 @@ graph TD
     client: '금융감독원 (FSS)',
     role: 'Full-Stack Developer · Reverse Engineer',
     description: '금융감독원 사내 화상회의 솔루션(세하컴즈 BODA)을 소스코드 없이 역공학으로 분석하여 커스터마이징하고, WebRTC 기반 실시간 영상/음성 스트리밍 시스템을 구축·안정화한 프로젝트입니다.',
-    tags: ['Java', 'WebRTC', 'WebSocket', 'Oracle', 'Docker', 'Git'],
+    tags: ['Java', 'WebRTC', 'WebSocket', 'Oracle', 'MariaDB', 'SVN'],
     achievements: [
-      'Docker 기반 미디어 서버 환경 구성 및 컨테이너화',
       '소스코드 없는 패키지(JAR/WAR) 역공학(Reverse Engineering) → 핵심 비즈니스 로직 역추적 성공',
       'WebRTC + WebSocket 기반 다중 접속 실시간 영상/음성 스트리밍 최적화',
       'HTML5 Canvas API 기반 화이트보드 판서 기능 고도화 및 객체 동기화',
@@ -223,11 +222,10 @@ graph LR
     client: '금융감독원 (FSS)',
     role: 'Backend Developer · DB Migration Architect',
     description: '네이트온(NateOn) 기반 노후 메신저를 신규 엔진(이지닉스 FFS)으로 전면 교체하고, 이기종 DB 간 무손실 암호화 마이그레이션, SSO/MFA 통합 인증, 인프라 3중화를 수행한 프로젝트입니다.',
-    tags: ['Java', 'Spring', 'MariaDB', 'MySQL', 'Docker', 'Git'],
+    tags: ['Java', 'Spring', 'MariaDB', 'MySQL', 'WebSocket', 'SVN'],
     achievements: [
       'Oracle ERP 인사 데이터 → MySQL 이기종 DB 간 계층형 조직도 트리 구조 마이그레이션 프로시저 설계',
       'MS-SQL 평문 대화내역 → MariaDB 암호화 전환: 100% 무손실 일괄 마이그레이션',
-      'Docker 기반 메신저 엔진 배포 및 운영 자동화',
       'RTF ↔ HTML 포맷 변환 충돌 해결: 커스텀 파싱 엔진 자체 구현 → 메시지 유실률 0%',
       '인프라 3중화(Dev, Ops, DR) 아키텍처 구축 → 무중단 서비스',
       'SSO/MFA 통합 인증 체계 구축 → 비인가 접근 원천 차단',

@@ -44,7 +44,7 @@ const TECH_CATEGORIES = [
   {
     title: 'Database & Persistence',
     description: '복잡한 RDBMS 설계 및 Redis를 활용한 인메모리 데이터 최적화',
-    skills: ['Oracle', 'PostgreSQL', 'MySQL', 'MariaDB', 'MSSQL', 'Redis'],
+    skills: ['Oracle', 'PostgreSQL', 'MySQL', 'MariaDB', 'MS-SQL', 'Redis'],
     icon: <Database size={24} />
   },
   {
@@ -221,7 +221,7 @@ export default function Home() {
                 </div>
                 <div className={styles.profileActions}>
                   <a href="mailto:admin@hooneyz.com" className={styles.btnPrimary} style={{ width: '100%' }}>
-                    Get in Touch
+                    Mail to Hooney
                   </a>
                   <a href="https://github.com/hooneyg" target="_blank" className={styles.btnSecondary} style={{ width: '100%' }} rel="noreferrer">
                     GitHub Profile
@@ -351,7 +351,7 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.specialtyList}>
-              {['MyBatis', 'FusionCharts', 'LENA', 'Jeus', 'Jennifer', 'TCP/IP', 'ISMS-P', 'Clean Architecture', 'Microservices'].map(tool => (
+              {['MyBatis', 'FusionCharts', 'LENA', 'TCP/IP', 'ISMS-P', 'Clean Architecture', 'MSA'].map(tool => (
                 <span key={tool} className={styles.specialtyBadge}>
                   {tool}
                 </span>
